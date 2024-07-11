@@ -1,40 +1,39 @@
-# summerintership2024_22IT020
-# 4th Sem Summer Internship
 # 🌞 Summer Internship 2024 Weekly Reports
-# 📅 Week 1: 13/05/2024 - 17/05/2024
-# 📝 Summary of Work Done
-# 📅 Day 1: 13/05/2024 (Monday)
-# Git and GitHub Basics:
+## 4th Sem Summer Internship
+## 📅 Week 1: 13/05/2024 - 17/05/2024
+## 📝 Summary of Work Done
+## 📅 Day 1: 13/05/2024 (Monday)
+## Git and GitHub Basics:
     - 📚 Introduction to Git and GitHub
     - 🔄 Differences between Git and GitHub
     - 📋 Overview of Version Control Systems
     - 🛠️ Installing Git
-# 📅 Day 2: 14/05/2024 (Tuesday)
-# Understanding Git Terminology:
+## 📅 Day 2: 14/05/2024 (Tuesday)
+## Understanding Git Terminology:
       - 🗣️ Git Terminology
       - 📂 Repository Setup
       - ⚙️ Config Settings
       - 💾 Commit Changes
-# 📅 Day 3: 15/05/2024 (Wednesday)
-# Git Workflow and Commands:
+## 📅 Day 3: 15/05/2024 (Wednesday)
+## Git Workflow and Commands:
       - 🔄 Complete Git Flow
       - 📝 Stage and Commit
       - 📜 Logs and Gitignore
       - 🏁 Conclusion
-# 📅 Day 4: 16/05/2024 (Thursday)
-# Git Internals:
+## 📅 Day 4: 16/05/2024 (Thursday)
+## Git Internals:
       - 🔍 Git Behind the Scenes
       - 📸 Git Snapshots
       - ⚔️ The Three Musketeers of Git: Commit, Tree, Blob Object
       - 🛠️ Helpful Commands
-# 📅 Day 5: 17/05/2024 (Friday)
-# Advanced Git Concepts:
+## 📅 Day 5: 17/05/2024 (Friday)
+## Advanced Git Concepts:
       - 🌿 Branches in Git
       - 🌱 Creating New Branches
       - 🔀 Merging Branches
       - 🏁 Conclusion
-# 📅 Day 1: 13/05/2024 (Monday)
-# Git and GitHub Basics:
+## 📅 Day 1: 13/05/2024 (Monday)
+## Git and GitHub Basics:
  - Introduction to Git and GitHub:
     - Git is a version control system that tracks changes to your files.
     - GitHub is an online platform for hosting Git repositories and collaborating with others.
@@ -47,8 +46,8 @@
     - Download and install Git from the official [website](https://git-scm.com/downloads).
   - Conclusion:
     - Learned basics of Git and GitHub, their importance, and how to install Git.
-# 📅 Day 2: 14/05/2024 (Tuesday)
-# Understanding Git Terminology:
+## 📅 Day 2: 14/05/2024 (Tuesday)
+## Understanding Git Terminology:
   - Terminology:
     - Key terms: repository, branch, commit, etc.
   - Repository Setup:
@@ -61,8 +60,8 @@
 
   - Commit Changes:
     - Using git commit to save changes with a message.
-# 📅 Day 3: 15/05/2024 (Wednesday)
-# Git Workflow and Commands:
+## 📅 Day 3: 15/05/2024 (Wednesday)
+## Git Workflow and Commands:
   - Complete Git Flow:
     - Basic commands: init, add, commit, push.
   - Stage and Commit:
@@ -74,8 +73,8 @@
   - Logs and Gitignore:
     - Using git log to view commit history.
     - Creating a .gitignore file to exclude specific files or folders.
-# 📅 Day 4: 16/05/2024 (Thursday)
-# Git Internals:
+## 📅 Day 4: 16/05/2024 (Thursday)
+## Git Internals:
   - Git Behind the Scenes:
     - How Git stores information as snapshots.
   - Git Snapshots:
@@ -89,8 +88,8 @@
       
  ![image](https://github.com/hemildesai0910/summerintership2024_22IT020/assets/147586274/d094f032-7c4a-4d96-8d71-d617c857d081)
  
-# 📅 Day 5: 17/05/2024 (Friday)
-# Advanced Git Concepts:
+## 📅 Day 5: 17/05/2024 (Friday)
+## Advanced Git Concepts:
   - Branches in Git:
     - Creating and switching branches:
       
@@ -110,3 +109,7 @@
  
   - Conclusion:
     -Learned about branching, merging, and conflict resolution in Git.
+
+![image](https://github.com/hemildesai0910/summerintership2024_22IT020/assets/147586274/940cd9bc-a900-4534-9686-78d7db89d4a2)
+
+
