@@ -11,28 +11,28 @@
     - 🛠️ Installing Git
 # 📅 Day 2: 14/05/2024 (Tuesday)
 # Understanding Git Terminology:
-  -🗣️ Git Terminology
-  -📂 Repository Setup
-  -⚙️ Config Settings
-  -💾 Commit Changes
+      - 🗣️ Git Terminology
+      - 📂 Repository Setup
+      - ⚙️ Config Settings
+      - 💾 Commit Changes
 # 📅 Day 3: 15/05/2024 (Wednesday)
 # Git Workflow and Commands:
-  -🔄 Complete Git Flow
-  -📝 Stage and Commit
-  -📜 Logs and Gitignore
-  -🏁 Conclusion
+      - 🔄 Complete Git Flow
+      - 📝 Stage and Commit
+      - 📜 Logs and Gitignore
+      - 🏁 Conclusion
 # 📅 Day 4: 16/05/2024 (Thursday)
 # Git Internals:
-  -🔍 Git Behind the Scenes
-  -📸 Git Snapshots
-  -⚔️ The Three Musketeers of Git: Commit, Tree, Blob Object
-  -🛠️ Helpful Commands
+      - 🔍 Git Behind the Scenes
+      - 📸 Git Snapshots
+      - ⚔️ The Three Musketeers of Git: Commit, Tree, Blob Object
+      - 🛠️ Helpful Commands
 # 📅 Day 5: 17/05/2024 (Friday)
 # Advanced Git Concepts:
-  -🌿 Branches in Git
-  -🌱 Creating New Branches
-  -🔀 Merging Branches
-  -🏁 Conclusion
+      - 🌿 Branches in Git
+      - 🌱 Creating New Branches
+      - 🔀 Merging Branches
+      - 🏁 Conclusion
 # 📅 Day 1: 13/05/2024 (Monday)
 # Git and GitHub Basics:
  - Introduction to Git and GitHub:
@@ -56,6 +56,7 @@
   - Config Settings:
     - Setting up username and email:
   - sh
+    
   ![image](https://github.com/hemildesai0910/summerintership2024_22IT020/assets/147586274/533ad0ad-2255-40cf-8686-2b686681cd7e)
 
   - Commit Changes:
@@ -67,7 +68,9 @@
   - Stage and Commit:
     - Commands to stage and commit files:
   - sh
+    
   ![image](https://github.com/hemildesai0910/summerintership2024_22IT020/assets/147586274/cfef144d-656a-4939-92e2-425a8c4bcf78)
+  
   - Logs and Gitignore:
     - Using git log to view commit history.
     - Creating a .gitignore file to exclude specific files or folders.
@@ -83,19 +86,27 @@
     - Blob Object: Contains the actual file contents.
   - Helpful Commands:
     - Explore Git internals with commands:
+      
  ![image](https://github.com/hemildesai0910/summerintership2024_22IT020/assets/147586274/d094f032-7c4a-4d96-8d71-d617c857d081)
+ 
 # 📅 Day 5: 17/05/2024 (Friday)
 # Advanced Git Concepts:
   - Branches in Git:
     - Creating and switching branches:
+      
   ![image](https://github.com/hemildesai0910/summerintership2024_22IT020/assets/147586274/db45834c-9716-4682-8935-f929c577449d)
+  
   -Merging Branches:
     - Fast-forward and not fast-forward merges:
+    
   ![image](https://github.com/hemildesai0910/summerintership2024_22IT020/assets/147586274/f6f7b180-e6ce-4bd9-b9b7-1a8e5efae118)
+  
   - Managing Conflicts:
     - Resolving merge conflicts manually or with tools like VSCode.
   - Additional Commands:
     - Rename, delete, list branches:
+      
  ![image](https://github.com/hemildesai0910/summerintership2024_22IT020/assets/147586274/b599204e-df0a-408d-a2e9-df76fff2f3bb)
+ 
   - Conclusion:
     -Learned about branching, merging, and conflict resolution in Git.
