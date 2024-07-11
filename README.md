@@ -5,10 +5,10 @@
 # 📝 Summary of Work Done
 # 📅 Day 1: 13/05/2024 (Monday)
 # Git and GitHub Basics:
-  -📚 Introduction to Git and GitHub
-  -🔄 Differences between Git and GitHub
-  -📋 Overview of Version Control Systems
-  -🛠️ Installing Git
+    - 📚 Introduction to Git and GitHub
+    - 🔄 Differences between Git and GitHub
+    - 📋 Overview of Version Control Systems
+    - 🛠️ Installing Git
 # 📅 Day 2: 14/05/2024 (Tuesday)
 # Understanding Git Terminology:
   -🗣️ Git Terminology
