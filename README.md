@@ -168,6 +168,9 @@
     - Drop: git stash drop
     - Apply to a specific branch: git stash apply stash@{0} <branch-name>
     - Clear stash: git stash clear
+
+      ![image](https://github.com/user-attachments/assets/f23f04e3-b960-4627-ace8-7475bb293fa0)
+
 - Git Tags
 - Tags mark specific points in your repository.
 
@@ -206,6 +209,8 @@
 ## History Of SQL
 - SQL (Structured Query Language) was designed in the 1970s at IBM.
 
+  ![image](https://github.com/user-attachments/assets/09c2f341-51df-4699-93a1-87b8232ac04c)
+
 - Relational Databases
     - Databases consist of data stored in multiple tables.
 
@@ -225,13 +230,17 @@
 - Common MySQL Data Types
 
     - Define and manage data types in MySQL.
-  
+
+  ![image](https://github.com/user-attachments/assets/083d5a0a-1f8d-46f8-8fb5-77d99cc89fbb)
+
 - Inserting, Updating & Deleting Records
 
     - Use SQL commands to manage records in tables.
 ## 📅 Day 5: 24/05/2024 - Friday
 ## DDL, DML, DQL, DCL & DTL
 - Understanding different types of SQL commands.
+
+  ![image](https://github.com/user-attachments/assets/70944bfb-3613-40b2-a8e3-cd18b710ed8c)
 
 - Database Design
     - Structuring tables and relationships for optimal design.
