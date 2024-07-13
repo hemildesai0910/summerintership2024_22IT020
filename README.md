@@ -523,10 +523,10 @@ Benefits:
 ## 🗃️ Creating our Model (Chat)
 - Creating a Mongoose schema and model for the chat application.
 
-![image](https://github.com/user-attachments/assets/5cf6c3cc-f3cd-4ad3-9b44-42123a9ae624)
+![image](https://github.com/user-attachments/assets/83945845-0c0b-4af4-9592-f768b14bc1e4)
 
-    - javascript
-    - Copy code
+- javascript
+- Copy code
   
             const mongoose = require('mongoose');
             
@@ -723,6 +723,12 @@ Benefits:
         </form>
     </body>
     </html>
+
+![image](https://github.com/user-attachments/assets/69230740-c991-41c3-88cd-cf76a39b63d5)
+
+![image](https://github.com/user-attachments/assets/a7a9569b-baf2-465d-bc86-a89721a78faf)
+
+
 ## 🔄 Update Route
 - javascript
 - Copy code
