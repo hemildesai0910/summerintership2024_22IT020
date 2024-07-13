@@ -122,7 +122,7 @@
     - 🏷️ Git Tags 
     -  ↔️ Rebase 
 ## 📅 Day 2: 21/05/2024 (Tuesday)
-      - 💾 What is Github? ℹ
+      - 💾 What is Github? 
       - 🔑 SSH Key 
       - 📡 Add Remote Repository 
       - 🎓 Conclusion 
@@ -252,3 +252,165 @@
   
 - EER Models
     - Entity-Relationship diagrams to map out tables, columns, keys, and relationships.
+
+
+## 📅 Week 3: 27/05/2024 - 37/05/2024
+## 📝 Summary of Work Done
+## 📅 Day 1: 27/05/2024 (Monday)
+    - 📚 9:00 - 10:00: Advanced Concepts
+    - 🗃️ 10:00 - 1:00: Using Indexes 
+    - 🏷️ 2:00 - 4:00: Creating An Index
+    -  ↔️ 4:00 - 6:00: Unique & NOT-NULL Constraint
+## 📅 Day 2: 28/05/2024 (Tuesday)
+      - 💾 9:00 - 10:00: Advanced SQL Database Administration
+      - 🔑 10:00 - 1:00: BIG 6 ELEMENTS OF SQL 
+      - 📡 2:00 - 4:00: COMMON JOIN TYPES
+      - 🎓 4:00 - 6:00: VIEWS
+## 📅 Day 3: 29/05/2024 (Wednesday)
+      - 🔄 9:00 - 10:00: Introduction To Replication
+      - 📝 10:00 - 1:00: TRIGGERS REVIEW
+      - 📜 2:00 - 4:00: TRIGGERS DEEP DIVE
+      - 🏁 4:00 - 6:00: Backup & Recovery
+## 📅 Day 4: 30/05/2024 (Thursday)
+      - 🔍 9:00 - 10:00: Automation Using TRIGGERS
+      - 📸 10:00 - 1:00: TRIGGERS REVIEW
+      - ⚔️ 2:00 - 4:00: TRIGGERS DEEP DIVE
+      - 🛠️ 4:00 - 6:00: VIEWS
+## 📅 Day 5: 31/05/2024 (Friday)
+      - 🌿9:00 - 10:00: Stored PROCEDURES
+      - 🌱10:00 - 1:00: SCHEDULED EVENTS
+      - 🔀 2:00 - 4:00: Writing Data From Websites
+      - 🏁 4:00 - 6:00: Security
+## 📝 Detailed Work Report:
+## 📅Day 1: 27/05/2024 (Monday)
+## 🔍 Advanced Concepts
+    - Advanced database concepts involve understanding more complex and sophisticated ways of handling data and optimizing database performance. This includes mastering techniques like indexing, normalization, denormalization, and understanding transaction control and concurrency.
+
+## 📊 Using Indexes
+- Indexes: 
+    - These are data structures that improve the speed of data retrieval operations on a database table. They work by creating a separate, smaller data structure that points to the data in the main table.
+- Benefits:
+    - Speed: Faster query performance.
+    - Efficiency: Reduces the need for full table scans.
+    - Maintenance: Regularly updating indexes to ensure optimal performance.
+## 🏗️ Creating An Index
+- Process:
+    - Using Workbench UI: Manage indexes through graphical tools.
+    - Using SQL Code: Create indexes with SQL statements like CREATE INDEX.
+    - Primary Key and Foreign Key: Automatically indexed in MySQL.
+## 🔒 Unique Constraint
+- Definition: Ensures all values in a column are unique.
+- Benefits:
+    - Data Integrity: Prevents duplicate entries.
+    - Implementation: Can be added via Workbench UI or SQL code (UNIQUE constraint).
+## ❌ Non-Null Constraint
+- Definition: Ensures a column cannot have NULL values.
+- Benefits:
+    - Data Integrity: Ensures critical fields are always populated.
+    - Implementation: Added via Workbench UI or SQL code (NOT NULL constraint).
+  
+## 📅Day 2: 28/05/2024 (Tuesday)
+## 🛠️ The “BIG 6” Elements of a SQL SELECT Statement
+    -1. SELECT: Specifies which columns to retrieve.
+    -2. FROM: Indicates the tables to retrieve data from.
+    -3. WHERE: Filters records based on specific conditions.
+    -4. GROUP BY: Aggregates data by specified columns.
+    -5. HAVING: Filters groups based on conditions.
+    -6. ORDER BY: Sorts the result set.
+## 🔗 Common Join Types
+- Inner Join: Retrieves records with matching values in both tables.
+- Left (Outer) Join: Retrieves all records from the left table and matching records from the right table.
+- Right (Outer) Join: Retrieves all records from the right table and matching records from the left table.
+- Full (Outer) Join: Retrieves all records when there is a match in either left or right table.
+## 📋 Review of CREATE, INSERT, & DELETE
+- CREATE SCHEMA: Sets up a new database schema.
+- INSERT INTO: Adds new records to a table.
+- CREATE TABLE: Defines a new table and its structure within a schema.
+- DELETE FROM: Removes records from a table based on specified conditions.
+## 🔗 Table Relationships & Cardinality
+- Cardinality: Describes the uniqueness of data values in a column.
+    - Primary Key: Unique, non-repeating values.
+    - Foreign Key: Can repeat, linking one table to another.
+- Relationships:
+    - One-to-One: Single record in one table relates to a single record in another.
+    - One-to-Many: Single record in one table relates to multiple records in another.
+    - Many-to-Many: Multiple records in one table relate to multiple records in another.
+      
+## 📅Day 3: 29/05/2024 (Wednesday)
+## 📦 Introduction to Replication
+- Replication: The process of sharing information to ensure consistency between redundant resources, such as software or hardware components.
+Benefits:
+- Backup: Provides a copy for disaster recovery.
+    - Load Balancing: Distributes read operations across multiple servers.
+    - High Availability: Ensures data is available during server failures.
+##📝 Row-Based Binary Log File Replication
+- Row-Based Replication: Records changes made to individual rows.
+    - Advantages: Faster, more efficient.
+    - Challenges: Harder to audit as it lacks SQL statements.
+## 📜 Statement-Based Binary Log File Replication
+- Statement-Based Replication: Records the SQL statements that made changes.
+    - Advantages: Easier to read and audit.
+    - Challenges: Issues with non-deterministic queries.
+## 🔄 Row-Based vs Statement-Based Replication
+- Row-Based: Efficient but complex to audit.
+- Statement-Based: Easy to audit but can have performance issues with certain queries.
+## 🛡️ Introduction to Backup & Recovery
+- Purpose: Ensures data is recoverable in case of failure.
+- Types of Backups:
+    - Physical: Copies raw data files.
+    - Logical: Copies SQL statements needed to recreate the database.
+    - Online: Taken while the database is running.
+    - Offline: Taken when the database is stopped.
+    - Local: Stored on the same server.
+    - Remote: Stored on a different server or location.
+## 🗃️ mysqldump
+- Usage: Creates logical backups by exporting SQL statements.
+- Output: Generates a .sql file with CREATE and INSERT statements.
+  
+## 📅Day 4: 30/05/2024 (Thursday)
+## ⚙️ Automation Using TRIGGERS
+- Definition: Triggers are automated actions executed before or after changes to table data.
+- Benefits:
+    - Ensures data consistency.
+    - Automates complex business rules.
+## 🔍 Triggers Deep Dive
+- Row-Level Triggers: Operate on individual rows.
+- Creating Triggers: Use CREATE TRIGGER statement.
+- Modifying Triggers: Drop and recreate using DROP TRIGGER and CREATE TRIGGER.
+- Multiple Triggers: Can be set on the same table, executed in defined order.
+- Actions: BEFORE or AFTER INSERT, UPDATE, or DELETE.
+## 🔎 Views
+- Definition: Virtual tables representing the result of a query.
+- Benefits:
+    - Simplifies complex queries.
+    - Enhances security by limiting access to underlying data.
+    - Aggregates data from multiple tables.
+    - Does not store data physically, reducing storage requirements.
+  
+## Day 📅5: 31/05/2024 (Friday)
+## 📜 Stored Procedure
+- Definition: A set of SQL statements that can be stored and executed on the server.
+- Benefits:
+    - Reuse of code.
+    - Improved performance.
+    - Simplifies complex operations.
+- Invocation: Using the CALL statement.
+- Parameters:
+    - IN: Passes a value to the procedure.
+    - OUT: Returns a value from the procedure.
+    - INOUT: Passes a value and returns an updated value.
+## ⏰ Scheduled Events
+- Definition: SQL operations scheduled to execute at specific times or intervals.
+- Benefits:
+    - Automates routine tasks.
+    - Ensures timely execution of operations.
+## 🌐 Writing Data From Websites
+- Techniques: Scraping data from websites and inserting it into databases.
+- Tools: Use of Python libraries like BeautifulSoup and Scrapy.
+## 🔒 Security
+- Importance: Protects data integrity and privacy.
+- Measures:
+    - Authentication: Verifies user identity.
+    - Authorization: Controls user access to data.
+    - Encryption: Secures data transmission and storage.
+    - Auditing: Monitors database activity.
