@@ -331,6 +331,9 @@
 - Cardinality: Describes the uniqueness of data values in a column.
     - Primary Key: Unique, non-repeating values.
     - Foreign Key: Can repeat, linking one table to another.
+
+![image](https://github.com/user-attachments/assets/945f7348-46ab-4c78-b17b-ec9a7cb94c46)
+
 - Relationships:
     - One-to-One: Single record in one table relates to a single record in another.
     - One-to-Many: Single record in one table relates to multiple records in another.
@@ -354,6 +357,9 @@ Benefits:
 ## 🔄 Row-Based vs Statement-Based Replication
 - Row-Based: Efficient but complex to audit.
 - Statement-Based: Easy to audit but can have performance issues with certain queries.
+
+![image](https://github.com/user-attachments/assets/31ecca5f-2049-4fe1-9c85-378eae29c65e)
+
 ## 🛡️ Introduction to Backup & Recovery
 - Purpose: Ensures data is recoverable in case of failure.
 - Types of Backups:
@@ -379,6 +385,9 @@ Benefits:
 - Modifying Triggers: Drop and recreate using DROP TRIGGER and CREATE TRIGGER.
 - Multiple Triggers: Can be set on the same table, executed in defined order.
 - Actions: BEFORE or AFTER INSERT, UPDATE, or DELETE.
+
+  ![image](https://github.com/user-attachments/assets/7c7195fd-0d80-495c-b9aa-83f528ee0826)
+
 ## 🔎 Views
 - Definition: Virtual tables representing the result of a query.
 - Benefits:
@@ -407,6 +416,9 @@ Benefits:
 ## 🌐 Writing Data From Websites
 - Techniques: Scraping data from websites and inserting it into databases.
 - Tools: Use of Python libraries like BeautifulSoup and Scrapy.
+
+  ![image](https://github.com/user-attachments/assets/373a5ca9-8282-4757-933f-97cdf3167fa2)
+
 ## 🔒 Security
 - Importance: Protects data integrity and privacy.
 - Measures:
