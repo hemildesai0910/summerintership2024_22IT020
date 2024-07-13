@@ -427,29 +427,29 @@ Benefits:
     - Encryption: Secures data transmission and storage.
     - Auditing: Monitors database activity.
 
-## 📅 Week 4: 03/05/2024 - 07/05/2024
+## 📅 Week 4: 03/06/2024 - 07/06/2024
 ## 📝 Summary of Work Done
-## 📅 Day 1: 03/05/2024 (Monday)
+## 📅 Day 1: 03/06/2024 (Monday)
     - 📚 9:00 - 10:00: MongoDB
     - 🗃️ 10:00 - 1:00: MongoDB Shell
     - 🏷️ 2:00 - 4:00: MongoDB Shell Diff Command
     -  ↔️ 4:00 - 6:00: Implementation
-## 📅 Day 2: 04/05/2024 (Tuesday)
+## 📅 Day 2: 04/06/2024 (Tuesday)
       - 💾 9:00 - 10:00: MongoDB With Express
       - 🔑 10:00 - 1:00: Basic Set Up
       - 📡 2:00 - 4:00: Creating our Model (Chat)
       - 🎓 4:00 - 6:00:  Initialize Database
-## 📅 Day 3: 05/05/2024 (Wednesday)
+## 📅 Day 3: 05/06/2024 (Wednesday)
       - 🔄 9:00 - 10:00: Index Route
       - 📝 10:00 - 1:00: New Route
       - 📜 2:00 - 4:00: Create Route
       - 🏁 4:00 - 6:00: Date Modification
-## 📅 Day 4: 06/05/2024 (Thursday)
+## 📅 Day 4: 06/06/2024 (Thursday)
       - 🔍 9:00 - 10:00: Edit Route
       - 📸 10:00 - 1:00: Update Route
       - ⚔️ 2:00 - 4:00: Destroy Route
       - 🛠️ 4:00 - 6:00: Project Start
-## 📅 Day 5: 07/05/2024 (Friday)
+## 📅 Day 5: 07/06/2024 (Friday)
       - 🌿9:00 - 10:00: Basic Set Up
       - 🌱10:00 - 1:00: Listing Model
       - 🔀 2:00 - 4:00: Initialize Database
@@ -841,4 +841,545 @@ Benefits:
         }));
 
   ![image](https://github.com/user-attachments/assets/8a80d007-1d0b-4409-8b65-1c8e5ee49ac6)
+
+## 📅 Week 3: 10/06/2024 - 14/06/2024
+## 📝 Summary of Work Done
+## 📅 Day 1 to 5 : 10/06/2024 (Monday) to 14/06/2024 Friday :
+    - 📚 9:00 - 10:00: Project Related Technology Learn
+    - 🗃️ 10:00 - 1:00: Understanding Theory  
+    - 🏷️ 2:00 - 4:00: Implementation
+    -  ↔️ 4:00 - 6:00: Implementation 
+## 📝 Detailed Work Report:
+## 📅Day 1: 10/06/2024 Monday
+
+## 🔧All Route:
+-javascript
+
+    const express = require('express');
+    const app = express();
+    const mongoose = require('mongoose');
+    const Listing = require('./models/listing.js');
+    const path = require('path');
+    const methodOverride = require("method-override");
+    const ejsMate = require("ejs-mate");
+    const wrapAsync = require("./utils/wrapAsync.js");
+    const ExpressError = require("./utils/ExpressError.js");
+    const { listingSchema, reviewSchema } = require("./schema.js");
+    const Review = require("./models/review.js");
+    
+    app.set("view engine", "ejs");
+    app.set("views", path.join(__dirname, "views"));
+    app.use(express.urlencoded({ extended: true }));
+    app.use(methodOverride("_method"));
+    app.engine('ejs', ejsMate);
+    app.use(express.static(path.join(__dirname, 'public')));
+    
+    const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+    
+    main().then(() => {
+        console.log("Connection Successful");
+    }).catch((err) => console.log(err));
+    
+    async function main() {
+      await mongoose.connect(MONGO_URL);
+    }
+    
+    app.get('/', (req, res) => {
+        res.send("Hi, I am root");
+    });
+    
+    const validateListing = (req, res, next) => {
+      let { error } = listingSchema.validate(req.body);
+      if (error) {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+      } else {
+        next();
+      }
+    };
+    
+    const validateReview = (req, res, next) => {
+      let { error } = reviewSchema.validate(req.body);
+      if (error) {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+      } else {
+        next();
+      }
+    };
+
+## 🏷️Index Route
+    app.get("/listings", wrapAsync(async (req, res) => {
+        const allListings = await Listing.find({});
+        res.render("listings/index.ejs", { allListings });
+    }));
+
+## 📄New Route
+    app.get("/listings/new", (req, res) => {
+        res.render("listings/new.ejs");
+    });
+
+## 🆕Show Route
+    app.get("/listings/:id", wrapAsync(async (req, res) => {
+        let { id } = req.params;
+        const listing = await Listing.findById(id);
+        res.render("listings/show.ejs", { listing });
+    }));
+
+## 📄Create Route
+    app.post("/listings", validateListing, wrapAsync(async (req, res, next) => {
+        const newListing = new Listing(req.body.listing);
+        await newListing.save();
+        res.redirect("/listings");
+    }));
+
+## 🆕Edit Route
+    app.get("/listings/:id/edit", async (req, res) => {
+        let { id } = req.params;
+        const listing = await Listing.findById(id);
+        res.render("listings/edit.ejs", { listing });
+    });
+
+## 📝Update Route
+    app.put("/listings/:id", validateListing, wrapAsync(async (req, res) => {
+        let { id } = req.params;
+        await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+        res.redirect(`/listings/${id}`);
+    }));
+
+## ❌Delete Route
+    app.delete("/listings/:id", wrapAsync(async (req, res) => {
+        let { id } = req.params;
+        let deletedListing = await Listing.findByIdAndDelete(id);
+        console.log(deletedListing);
+        res.redirect("/listings");
+    }));
+
+## 🔄Reviews Route
+    app.post('/listings/:id/reviews', validateReview, wrapAsync(async (req, res) => {
+        let listing = await Listing.findById(req.params.id);
+        let newReview = new Review(req.body.review);
+        listing.reviews.push(newReview);
+        await newReview.save();
+        await listing.save();
+        res.redirect(`/listings/${listing._id}`);
+    }));
+    
+    app.all("*", (req, res, next) => {
+      next(new ExpressError(404, "Page Not Found"));
+    });
+    
+    app.use((err, req, res, next) => {
+      let { statusCode = 500, message = "Something went wrong" } = err;
+      res.status(statusCode).render("error.ejs", { err });
+    });
+    
+    app.listen(8080, () => {
+        console.log(`server is running on port 8080`);
+    });
+## 📅Day 2: 11/06/2024 Tuesday
+
+## 🍁CSS:
+- css
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .container {
+            flex: 1;
+        }
+        
+        .navbar {
+            height: 5rem;
+            background-color: white;
+        }
+        
+        .fa-compass-drafting {
+            font-size: 2rem;
+        }
+        
+        .nav-link {
+            color: #222222 !important;
+        }
+        
+        .info-links a {
+            text-decoration: none;
+            color: #222222;
+        }
+        
+        .info-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .info-links, .f-info-socials, .f-info-brand {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .f-info-socials i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .f-info {
+            text-align: center;
+            height: 8rem;
+            background-color: #ebebeb;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: space-evenly;
+        }
+        
+        .card {
+            border: none !important;
+            margin-bottom: 2rem;
+        }
+        
+        .card-img-top {
+            border-radius: 1rem !important;
+            width: 100% !important;
+            object-fit: cover !important;
+        }
+        
+        .card-body {
+            padding: 0 !important;
+        }
+        
+        .card-text p {
+            font-weight: 400;
+        }
+        
+        .listing-link {
+            text-decoration: none;
+        }
+        
+        .card-img-overlay {
+            opacity: 0;
+        }
+        
+        .card-img-overlay:hover {
+            opacity: 0.2;
+            background-color: white;
+        }
+        
+        .add-btn, .edit-btn {
+            background-color: #ea0606 !important;
+            border: none !important;
+        }
+        
+        .show-img {
+            height: 30vh;
+        }
+        
+        .btns {
+            display: flex;
+        }
+        
+        .show-card {
+            padding-left: 0;
+            padding-right: 0;
+        }
+## 📅Day 3: 12/06/2024 Wednesday 
+## ❌ExpressError.js:
+    javascript
+    Copy code
+    class ExpressError extends Error {
+        constructor(statusCode, message) {
+            super();
+            this.statusCode = statusCode;
+            this.message = message;
+        }
+    }
+    
+    module.exports = ExpressError;
+    wrapAsync.js:
+    
+    javascript
+    Copy code
+    module.exports = (fn) => {
+        return (req, res, next) => {
+            fn(req, res, next).catch(next);
+        };
+    };
+    
+## 🏷️EJS
+## 📄edit.ejs
+
+    <% layout("/layouts/boilerplate") %>
+    <div class="row mt-3">
+        <div class="col-8 offset-2"> 
+        <h3>Edit your Listing</h3>
+        <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+    
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required/>
+        <div class="valid-feedback">Title looks good!</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="Description" class="form-label">description</label>
+      <textarea name="listing[description]" class="form-control" required>
+      <%= listing.description %> </textarea>
+      <div class="invalid-feedback">Please enter a short description</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="image_url" class="form-label">Image URL</label>
+      <input name="listing[image_url]" value="<%= listing.image.url %>" type="text" class="form-control" required/>
+      <div class="invalid-feedback">Please enter a valid link for a image</div>
+    </div>
+
+    <div class="row">
+    <div class="mb-3 col">
+      <label for="Price" class="form-label">Price</label>
+      <div class="input-group has-validation">
+      <span class="input-group-text">$</span>
+      <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" id="price" aria-describedby="inputGroupPrepend" required/>
+      <div class="invalid-feedback">Please enter a valid price</div>
+    </div>
+    </div>
+    </div>
+    <button class="btn btn-danger">Submit</button>
+      </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+    <script>
+    (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach((form) => {
+            form.addEventListener('submit', (event) => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+    </script>
+## 📄index.ejs
+    <% layout("/layouts/boilerplate") %>
+    <div class="container mt-3">
+        <h3>Listings</h3>
+        <div class="row mt-3">
+            <% for(let listing of allListings) { %>
+                <div class="col-md-4">
+                    <a class="listing-link" href="/listings/<%= listing._id %>">
+                        <div class="card h-100">
+                            <img src="<%= listing.image.url %>" class="card-img-top"/>
+                            <div class="card-body">
+                                <h5 class="card-title"><%= listing.title %></h5>
+                                <p class="card-text"><%= listing.description %></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    
+## 🗃️layouts/boilerplate.ejs
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/stylesheets/app.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><i class="fa-solid fa-compass-drafting"></i></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listings/new">Add a Listing</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <%- body %>
+        </div>
+    </body>
+    </html>
+## .💻new.ejs
+    <% layout("/layouts/boilerplate") %>
+    <div class="row mt-3">
+        <div class="col-8 offset-2"> 
+            <h3>Add a New Listing</h3>
+            <form method="POST" action="/listings" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="listing[title]" type="text" class="form-control" required/>
+                    <div class="valid-feedback">Title looks good!</div>
+                </div>
+
+            <div class="mb-3">
+                <label for="Description" class="form-label">description</label>
+                <textarea name="listing[description]" class="form-control" required></textarea>
+                <div class="invalid-feedback">Please enter a short description</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image_url" class="form-label">Image URL</label>
+                <input name="listing[image_url]" type="text" class="form-control" required/>
+                <div class="invalid-feedback">Please enter a valid link for an image</div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col">
+                    <label for="Price" class="form-label">Price</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text">$</span>
+                        <input name="listing[price]" type="number" class="form-control" id="price" aria-describedby="inputGroupPrepend" required/>
+                        <div class="invalid-feedback">Please enter a valid price</div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-danger">Submit</button>
+        </form>
+    </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+    <script>
+    (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach((form) => {
+            form.addEventListener('submit', (event) => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+    </script>
+## 🛠️show.ejs
+
+    <% layout("/layouts/boilerplate") %>
+    <div class="row mt-3">
+        <div class="col-6">
+            <img class="img-fluid show-img" src="<%= listing.image.url %>"/>
+        </div>
+        <div class="col-6">
+            <h3><%= listing.title %></h3>
+            <p><%= listing.description %></p>
+            <p>$<%= listing.price %></p>
+            <div class="btns">
+                <a href="/listings/<%= listing._id %>/edit" class="btn btn-danger edit-btn">Edit</a>
+                <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                    <button class="btn btn-danger delete-btn">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+## 📅Day 4: 13/06/2024 Thursday
+
+## 🗄️models/listing.js:
+
+    const mongoose = require("mongoose");
+    const reviewSchema = require("./review.js");
+    
+    const listingSchema = new mongoose.Schema({
+        title: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
+            required: true,
+        },
+        price: {
+            type: Number,
+            required: true,
+        },
+        image: {
+            url: String,
+            filename: String,
+        },
+        reviews: [reviewSchema],
+    });
+    
+    const Listing = mongoose.model("Listing", listingSchema);
+    
+    module.exports = Listing;
+
+## 🏷️models/review.js:
+
+    const mongoose = require("mongoose");
+    
+    const reviewSchema = new mongoose.Schema({
+        rating: {
+            type: Number,
+            required: true,
+        },
+        comment: {
+            type: String,
+            required: true,
+        },
+    });
+
+    module.exports = reviewSchema;
+## 📅Day 5: 14/06/2024 Friday
+## 📝schema.js:
+    const Joi = require("joi");
+    
+    const listingSchema = Joi.object({
+        listing: Joi.object({
+            title: Joi.string().required(),
+            description: Joi.string().required(),
+            price: Joi.number().required().min(0),
+            image_url: Joi.string().required(),
+        }).required(),
+    });
+    
+    const reviewSchema = Joi.object({
+        review: Joi.object({
+            rating: Joi.number().required().min(1).max(5),
+            comment: Joi.string().required(),
+        }).required(),
+    });
+    
+    module.exports = { listingSchema, reviewSchema };
+## 📝Output Of All Project :
+
+![image](https://github.com/user-attachments/assets/13e4edc9-7dff-40a0-a758-f27f48b7e3dc)
+
+![image](https://github.com/user-attachments/assets/8d1af3de-c72d-4108-9586-fd3dba946a31)
+
+![image](https://github.com/user-attachments/assets/cd14c044-182a-4ec7-a01d-9192d6463448)
+
+![image](https://github.com/user-attachments/assets/6d6ef897-0f24-480a-aa3e-be07a69385b4)
+
+![image](https://github.com/user-attachments/assets/fdff32d4-8f78-40fe-aef8-1a7710de1219)
+
+![image](https://github.com/user-attachments/assets/b81f4e32-134f-4c89-815d-aed1f0630650)
+
+![image](https://github.com/user-attachments/assets/a1dfc557-d2df-4979-baaf-af32105eac6b)
+
+
+
+
+
 
