@@ -427,7 +427,7 @@ Benefits:
     - Encryption: Secures data transmission and storage.
     - Auditing: Monitors database activity.
 
-## 📅 Week 3: 03/05/2024 - 07/05/2024
+## 📅 Week 4: 03/05/2024 - 07/05/2024
 ## 📝 Summary of Work Done
 ## 📅 Day 1: 03/05/2024 (Monday)
     - 📚 9:00 - 10:00: MongoDB
@@ -455,28 +455,40 @@ Benefits:
       - 🔀 2:00 - 4:00: Initialize Database
       - 🏁 4:00 - 6:00: Index Route
 ## 📝 Detailed Work Report:
-## Day 1: 03/06/2024 (Monday)
+## 📅 Day 1: 03/06/2024 (Monday)
 ## 🗃️ MongoDB
 - MongoDB is a NoSQL database known for its flexibility and scalability. It stores data in JSON-like documents, making it easier to work with data structures that change over time.
+
+  ![image](https://github.com/user-attachments/assets/742274ae-210e-436f-9080-35184e6497d9)
 
 ## 💻 MongoDB Shell
 - The MongoDB Shell is an interactive JavaScript interface to MongoDB, used to perform administrative tasks, query the database, and interact with the data.
 
+  ![image](https://github.com/user-attachments/assets/31a15d11-9536-4f87-8967-b4749272493e)
+
+
 ## 📑 MongoDB Shell Diff Command
 - The diff command in MongoDB Shell is used to compare documents, helping to identify differences between data sets. This is crucial for debugging and ensuring data consistency.
+
+![image](https://github.com/user-attachments/assets/9be08afe-70a1-40eb-8d60-c9b85053fbda)
 
 ## 🛠️ Implementation
 - In this session, we implemented various MongoDB features learned, including creating databases, collections, and performing CRUD operations to reinforce the concepts practically.
 
-## Day 2: 04/06/2024 (Tuesday)
+  ![image](https://github.com/user-attachments/assets/8b79bced-2d08-4d6e-9c56-40cb0e773a91)
+
+
+## 📅 Day 2: 04/06/2024 (Tuesday)
 ## 🌐 MongoDB With Express
 - Integrating MongoDB with Express.js, a web application framework for Node.js, allows for building robust and scalable web applications.
 
+  ![image](https://github.com/user-attachments/assets/765d3470-dfce-450a-9132-3f8c58ec97e4)
+
+
 ## 🔧 Basic Set Up
 - Setting up the project environment with Express and MongoDB involved configuring essential modules and middleware.
-
 - javascript
-        Copy code
+  
         const express = require('express');
         const app = express();
         const mongoose = require('mongoose');
@@ -505,281 +517,322 @@ Benefits:
         app.listen(8080, () => {
             console.log(`server is running on port 8080`);
         });
-🗃️ Creating our Model (Chat)
-Creating a Mongoose schema and model for the chat application.
 
-javascript
-Copy code
-const mongoose = require('mongoose');
+![image](https://github.com/user-attachments/assets/908a2a57-990c-4584-908e-9365ee84a5f1)
 
-const chatSchema = new mongoose.Schema({
-    from: {
-        type: String,
-        required: true,
-    },
-    To: {
-        type: String,
-        required: true,
-    },
-    mag: {
-        type: String,
-        maxLength: 50
-    },
-    created_at: {
-        type: Date,
-        required: true,
-    },
-});
+## 🗃️ Creating our Model (Chat)
+- Creating a Mongoose schema and model for the chat application.
 
-const Chat = mongoose.model("Chat", chatSchema);
+![image](https://github.com/user-attachments/assets/5cf6c3cc-f3cd-4ad3-9b44-42123a9ae624)
 
-module.exports = Chat;
-🗄️ Initialize Database
-Populating the database with initial data using the insertMany method.
+    - javascript
+    - Copy code
+  
+            const mongoose = require('mongoose');
+            
+            const chatSchema = new mongoose.Schema({
+                from: {
+                    type: String,
+                    required: true,
+                },
+                To: {
+                    type: String,
+                    required: true,
+                },
+                mag: {
+                    type: String,
+                    maxLength: 50
+                },
+                created_at: {
+                    type: Date,
+                    required: true,
+                },
+            });
+            
+            const Chat = mongoose.model("Chat", chatSchema);
+            
+            module.exports = Chat;
+  ## 🗄️ Initialize Database
+- Populating the database with initial data using the insertMany method.
 
-javascript
-Copy code
-const mongoose = require('mongoose');
-const Chat = require("./models/chat.js");
+    - javascript
+    - Copy code
+            const mongoose = require('mongoose');
+            const Chat = require("./models/chat.js");
+            
+            main().then(() => {
+                console.log("Connection Successful");
+            }).catch(err => console.log(err));
+            
+            async function main() {
+              await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
+            }
+            
+            let allChats = [
+                { from: "Manan", To: "Naman", mag: "HA HA HA", created_at: new Date() },
+                { from: "Abhii", To: "Om", mag: "NA NA NA", created_at: new Date() },
+                { from: "Umang", To: "Hemio", mag: "KM CHHO BHAI", created_at: new Date() },
+                { from: "Hemil", To: "Hardik", mag: "teach me JS callbacks", created_at: new Date() },
+                { from: "Anant", To: "Pratik", mag: "teach me Nodejs callbacks", created_at: new Date() },
+                { from: "Ghanashyam", To: "Manan", mag: "teach me Python callbacks", created_at: new Date() },
+            ];
+            
+            Chat.insertMany(allChats);
+      
+![image](https://github.com/user-attachments/assets/dcb80a23-1c2f-4909-9d63-fcfeb215c751)
+      
+## 📅 Day 3: 05/06/2024 (Wednesday)
+## 🏷️ Index Route
+- Setting up the index route to display all chats.
 
-main().then(() => {
-    console.log("Connection Successful");
-}).catch(err => console.log(err));
+    - javascript
+    - Copy code
+      
+                //index route
+                app.get('/chats', async (req, res) => {
+                    let chats = await Chat.find();
+                    res.render("index.ejs", { chats });
+                });
+  ## 📄 index.ejs File
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Mini Whatsapp</title>
+                    <link rel="stylesheet" href="style.css">
+                </head>
+                <body>
+                    <h3>ALL Chats!</h3>
+                    <form method="GET" action="/chats/new">
+                        <button>New Chat</button>
+                        <br><br><br>
+                    </form>
+                    <% for(let chat of chats){ %>
+                        <div class="chat">
+                            <p>From : <b><%=chat.from%></b></p>
+                            <div class="msg">
+                                <p><%=chat.mag%></p>
+                                <form method="GET" action="/chats/<%= chat._id %>/edit">
+                                    <button>Edit</button>
+                                </form>
+                                <br>
+                                <form method="POST" action="/chats/<%=chat._id%>?_method=DELETE">
+                                    <button>Delete</button>
+                                </form>
+                            </div>
+                            <p>Received By : <b><%=chat.To%></b></p>
+                            <hr>
+                            <p><%=chat.created_at.toString().split(" ")[4]%></p>
+                            <p><%=chat.created_at.toString().split(" ").slice(0,4).join("- ")%></p>
+                        </div>
+                    <% } %>
+                </body>
+                </html>
+  
+  ![image](https://github.com/user-attachments/assets/98d82428-5d93-4a55-82a8-a207e0c7dd56)
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
-}
+## 🆕 New Route
+- javascript
+- Copy code
+  
+        //new route
+        app.get('/chats/new', (req, res) => {
+            res.render("new.ejs");
+        });
+  
+## 📄 new.ejs File
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Write new chat</title>
+    </head>
+    <body>
+        <h3>Write new chat..</h3>
+        <form method="POST" action="/chats">
+            <input placeholder="who are you?" name="from" />
+            <br><br>
+            <textarea rows="10" cols="20" name="mag">Write your message here..</textarea>
+            <br><br>
+            <input placeholder="add receiver" name="To" />
+            <br><br>
+            <button>Create Chat</button>
+        </form>
+    </body>
+    </html>
 
-let allChats = [
-    { from: "Manan", To: "Naman", mag: "HA HA HA", created_at: new Date() },
-    { from: "Abhii", To: "Om", mag: "NA NA NA", created_at: new Date() },
-    { from: "Umang", To: "Hemio", mag: "KM CHHO BHAI", created_at: new Date() },
-    { from: "Hemil", To: "Hardik", mag: "teach me JS callbacks", created_at: new Date() },
-    { from: "Anant", To: "Pratik", mag: "teach me Nodejs callbacks", created_at: new Date() },
-    { from: "Ghanashyam", To: "Manan", mag: "teach me Python callbacks", created_at: new Date() },
-];
+![image](https://github.com/user-attachments/assets/34c447a5-149d-4a51-9caa-840bfbf0e313)
 
-Chat.insertMany(allChats);
-Day 3: 05/06/2024 (Wednesday)
-🏷️ Index Route
-Setting up the index route to display all chats.
+## 🆕 Create Route
+- javascript
+- Copy code
+  
+        app.post('/chats', (req, res) => {
+            let { from, To, mag } = req.body;
+            let newChat = new Chat({
+                from: from,
+                To: To,
+                mag: mag,
+                created_at: new Date()
+            });
+            newChat.save().then(() => {
+                console.log("chat was saved");
+            }).catch((err) => {
+                console.log(err);
+            });
+            
+            res.redirect("/chats");
+        });
 
-javascript
-Copy code
-//index route
-app.get('/chats', async (req, res) => {
-    let chats = await Chat.find();
-    res.render("index.ejs", { chats });
-});
-📄 index.ejs File
-html
-Copy code
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Whatsapp</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h3>ALL Chats!</h3>
-    <form method="GET" action="/chats/new">
-        <button>New Chat</button>
-        <br><br><br>
-    </form>
-    <% for(let chat of chats){ %>
-        <div class="chat">
-            <p>From : <b><%=chat.from%></b></p>
-            <div class="msg">
-                <p><%=chat.mag%></p>
-                <form method="GET" action="/chats/<%= chat._id %>/edit">
-                    <button>Edit</button>
-                </form>
-                <br>
-                <form method="POST" action="/chats/<%=chat._id%>?_method=DELETE">
-                    <button>Delete</button>
-                </form>
-            </div>
-            <p>Received By : <b><%=chat.To%></b></p>
-            <hr>
-            <p><%=chat.created_at.toString().split(" ")[4]%></p>
-            <p><%=chat.created_at.toString().split(" ").slice(0,4).join("- ")%></p>
-        </div>
-    <% } %>
-</body>
-</html>
-🆕 New Route
-javascript
-Copy code
-//new route
-app.get('/chats/new', (req, res) => {
-    res.render("new.ejs");
-});
-📄 new.ejs File
-html
-Copy code
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Write new chat</title>
-</head>
-<body>
-    <h3>Write new chat..</h3>
-    <form method="POST" action="/chats">
-        <input placeholder="who are you?" name="from" />
-        <br><br>
-        <textarea rows="10" cols="20" name="mag">Write your message here..</textarea>
-        <br><br>
-        <input placeholder="add receiver" name="To" />
-        <br><br>
-        <button>Create Chat</button>
-    </form>
-</body>
-</html>
-🆕 Create Route
-javascript
-Copy code
-app.post('/chats', (req, res) => {
-    let { from, To, mag } = req.body;
-    let newChat = new Chat({
-        from: from,
-        To: To,
-        mag: mag,
-        created_at: new Date()
-    });
-    newChat.save().then(() => {
-        console.log("chat was saved");
-    }).catch((err) => {
-        console.log(err);
-    });
-    
-    res.redirect("/chats");
-});
-🗓️ Date Modification
-Explored various methods and functions to manipulate date and time within the chat application to ensure accurate timestamping.
+  ![image](https://github.com/user-attachments/assets/cacd9a7c-ce46-4fc3-9503-7f0c83a971e7)
 
-Day 4: 06/06/2024 (Thursday)
-📝 Edit Route
-javascript
-Copy code
-//edit route
-app.get('/chats/:id/edit', async (req, res) => {
-    let { id } = req.params;
-    let chat = await Chat.findById(id);
-    res.render("edit.ejs", { chat });
-});
-📄 edit.ejs File
-html
-Copy code
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Your Chat</title>
-</head>
-<body>
-    <h3>Edit Your Chat: <%= chat._id %></h3>
-    <p>This chat was sent from <b><%= chat.from %></b> to <b><%= chat.To %></b></p>
-    <form method="POST" action="/chats/<%= chat._id %>?_method=PUT">
-        <textarea name="mag" rows="6" cols="50" id=""><%= chat.mag %></textarea><br>
-        <button>Edit</button>
-    </form>
-</body>
-</html>
-🔄 Update Route
-javascript
-Copy code
-//Update route
-app.put('/chats/:id', async (req, res) => {
-    let { id } = req.params;
-    let { mag: newMsg } = req.body;
-    let updatedChat = await Chat.findByIdAndUpdate(id, { mag: newMsg }, { runValidators: true, new: true });
+## 🗓️ Date Modification
+- Explored various methods and functions to manipulate date and time within the chat application to ensure accurate timestamping.
 
-    res.redirect("/chats");
-});
-❌ Destroy Route
-javascript
-Copy code
-app.delete('/chats/:id', async (req, res) => {
-    let { id } = req.params;
-    let deletedChat = await Chat.findByIdAndDelete(id);
-    console.log(deletedChat);  
+  ![image](https://github.com/user-attachments/assets/fb6097e3-51c1-4b21-bfb2-cdc0c38c758d)
 
-    res.redirect("/chats");
-});
-Day 5: 07/06/2024 (Friday)
-🔧 Basic Set Up
-Revisited the initial setup to ensure all configurations and dependencies were correctly installed and running.
 
-📝 Listing Model
-javascript
-Copy code
-const mongoose = require("mongoose");
-const review = require("./review");
-const Schema = mongoose.Schema;
+## 📅 Day 4: 06/06/2024 (Thursday)
+## 📝 Edit Route
+- javascript
+- Copy code
+  
+        //edit route
+        app.get('/chats/:id/edit', async (req, res) => {
+            let { id } = req.params;
+            let chat = await Chat.findById(id);
+            res.render("edit.ejs", { chat });
+        });
+  
+## 📄 edit.ejs File
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Your Chat</title>
+    </head>
+    <body>
+        <h3>Edit Your Chat: <%= chat._id %></h3>
+        <p>This chat was sent from <b><%= chat.from %></b> to <b><%= chat.To %></b></p>
+        <form method="POST" action="/chats/<%= chat._id %>?_method=PUT">
+            <textarea name="mag" rows="6" cols="50" id=""><%= chat.mag %></textarea><br>
+            <button>Edit</button>
+        </form>
+    </body>
+    </html>
+## 🔄 Update Route
+- javascript
+- Copy code
+  
+        //Update route
+        app.put('/chats/:id', async (req, res) => {
+            let { id } = req.params;
+            let { mag: newMsg } = req.body;
+            let updatedChat = await Chat.findByIdAndUpdate(id, { mag: newMsg }, { runValidators: true, new: true });
+        
+            res.redirect("/chats");
+        });
+## ❌ Destroy Route
+- javascript
+- Copy code
+  
+        app.delete('/chats/:id', async (req, res) => {
+            let { id } = req.params;
+            let deletedChat = await Chat.findByIdAndDelete(id);
+            console.log(deletedChat);  
+        
+            res.redirect("/chats");
+        });
 
-const listingSchema = new Schema({
-  title: {
-    type: String,
-  },
-  description: String,
-  image: {
-    url: {
-      type: String,
-      default: "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    filename: {
-      type: String,
-    },
-  },
-  price: Number,
-  location: String,
-  country: String,
-  reviews: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Review",
-    },
-  ],
-});
+  ![image](https://github.com/user-attachments/assets/0769e4da-ebbc-4211-81c1-b2c4d5f4a688)
 
-const Listing = mongoose.model("Listing", listingSchema);
+  ![image](https://github.com/user-attachments/assets/e7cc55fa-5672-4976-826d-9893f9d336dc)
 
-module.exports = Listing;
-🗄️ Initialize Database
-javascript
-Copy code
-const mongoose = require("mongoose");
-const initData = require("./data.js");
-const Listing = require("../models/listing.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+## 📅 Day 5: 07/06/2024 (Friday)
+## 🔧 Basic Set Up
+- Revisited the initial setup to ensure all configurations and dependencies were correctly installed and running.
 
-main().then(() => {
-    console.log("connected to DB");
-}).catch((err) => {
-    console.log(err);
-});
+  ![image](https://github.com/user-attachments/assets/9ec8cb00-fdd9-4c58-a174-786396002214)
 
-async function main() {
-    await mongoose.connect(MONGO_URL);
-}
+## 📝 Listing Model
+- javascript
+- Copy code
 
-const initDB = async () => {
-    await Listing.deleteMany({});
-    await Listing.insertMany(initData.data);
-    console.log("data was initialized");
-};
+        const mongoose = require("mongoose");
+        const review = require("./review");
+        const Schema = mongoose.Schema;
+        
+        const listingSchema = new Schema({
+          title: {
+            type: String,
+          },
+          description: String,
+          image: {
+            url: {
+              type: String,
+              default: "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+            },
+            filename: {
+              type: String,
+            },
+          },
+          price: Number,
+          location: String,
+          country: String,
+          reviews: [
+            {
+              type: Schema.Types.ObjectId,
+              ref: "Review",
+            },
+          ],
+        });
+        
+        const Listing = mongoose.model("Listing", listingSchema);
+        
+        module.exports = Listing;
+  
+![image](https://github.com/user-attachments/assets/33f364cd-749a-4d27-8df9-479447afb2dc)
 
-initDB();
-🏷️ Index Route
-javascript
-Copy code
-app.get("/listings", wrapAsync(async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
-}));
+## 🗄️ Initialize Database
+- javascript
+- Copy code
+  
+        const mongoose = require("mongoose");
+        const initData = require("./data.js");
+        const Listing = require("../models/listing.js");
+        
+        const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+        
+        main().then(() => {
+            console.log("connected to DB");
+        }).catch((err) => {
+            console.log(err);
+        });
+        
+        async function main() {
+            await mongoose.connect(MONGO_URL);
+        }
+        
+        const initDB = async () => {
+            await Listing.deleteMany({});
+            await Listing.insertMany(initData.data);
+            console.log("data was initialized");
+        };
+        
+        initDB();
+  
+## 🏷️ Index Route
+- javascript
+- Copy code
+  
+        app.get("/listings", wrapAsync(async (req, res) => {
+            const allListings = await Listing.find({});
+            res.render("listings/index.ejs", { allListings });
+        }));
+
+  ![image](https://github.com/user-attachments/assets/8a80d007-1d0b-4409-8b65-1c8e5ee49ac6)
+
